@@ -1,1 +1,1 @@
-Repository for all things Docker and Kubernetes
+Playground for all things Docker and Kubernetes
