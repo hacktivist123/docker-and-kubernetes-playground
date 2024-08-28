@@ -21,10 +21,10 @@ spec:
         name: frontend
         env:
         - name: JOURNAL_ENTRIES
-        valueFrom:
-          configMapKeyRef:
-            name: frontend-config
-            key: journalEntries
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: journalEntries
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         resources:
