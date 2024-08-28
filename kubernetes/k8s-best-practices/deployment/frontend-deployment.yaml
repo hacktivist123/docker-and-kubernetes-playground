@@ -19,6 +19,12 @@ spec:
       - image: coderblvck/journal-server:latest
         imagePullPolicy: Always
         name: frontend
+        env:
+        - name: JOURNAL_ENTRIES
+        valueFrom:
+          configMapKeyRef:
+            name: frontend-config
+            key: journalEntries
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         resources:
