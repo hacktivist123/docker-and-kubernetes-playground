@@ -32,6 +32,39 @@
 
 - By default, containers running in pods on Kubernetes have access to the filesystem
 
-- in kubernetes, the filesystem is ephemeral. When a pod is deleted, the filesystem is deleted with it.
+- In kubernetes, the filesystem is ephemeral. When a pod is deleted, the filesystem is deleted with it.
 
 - The primary reason for using an ephemeral volume is to share data between containers in a pod.
+
+- Instead of simply adding a volume to a deployment, a persistent volume is a cluster-level resource that is created separately from the pod and then attached to the pod. It's similar to a ConfigMap in that way.
+
+- Persistent Volumes can be created statically or dynamically.
+
+ - Static PVs are created manually by a cluster admin
+ - Dynamic PVs are created automatically when a pod requests a volume that doesn't exist yet
+
+- A persistent volume claim is a request for a persistent volume. When using dynamic provisioning, a PVC will automatically create a PV if one doesn't exist that matches the claim.
+
+- `kubectl top pod` command  will show you the resources that each pod is using.
+
+- There are two ways to scale an application: vertically and horizontally.
+
+- We can set resource limits in our deployment files
+
+- A Horizontal Pod Autoscaler can automatically scale the number of Pods in a Deployment based on observed CPU utilization or other custom metrics. It's very common in a Kubernetes environment to have a low number of pods in a deployment, and then scale up the number of pods automatically as CPU usage increases.
+
+- there are two types of machines in a production Kubernetes cluster:
+
+  - Control Plane
+  - Worker Nodes
+
+- A resource request is the amount of a resource that a pod requests from the node it's running on. A resource limit, on the other hand, is the maximum amount of a resource that a pod is allowed to consume before it's throttled or killed.
+  - One of the most important things to get right when working with pod autoscalers in Kubernetes are the resource requests and limits. If you don't set them correctly, you can end up with a situation where your pods are crashing, or your autoscaler is scaling up too many pods.
+
+   - Set memory requests ~10% higher than the average memory usage of your pods
+   - Set CPU requests to 50% of the average CPU usage of your pods
+   - Set memory limits ~100% higher than the average memory usage of your pods
+   - Set CPU limits ~100% higher than the average CPU usage of your pods
+   
+
+ 
